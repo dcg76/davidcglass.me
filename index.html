@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David C. Glass</title>
+<meta name="description" content="An entrepreneur by nature and a creator at heart. I build businesses, create experiences, and connect people across the worlds of technology, media, gaming, and entertainment.">
+<link rel="canonical" href="https://www.davidcglass.me/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.davidcglass.me/">
+<meta property="og:title" content="David C. Glass">
+<meta property="og:description" content="An entrepreneur by nature and a creator at heart. I build businesses, create experiences, and connect people across the worlds of technology, media, gaming, and entertainment.">
+<meta property="og:image" content="https://www.davidcglass.me/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="David C. Glass">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@davidcglass">
+<meta name="twitter:creator" content="@davidcglass">
+<meta name="twitter:title" content="David C. Glass">
+<meta name="twitter:description" content="An entrepreneur by nature and a creator at heart. I build businesses, create experiences, and connect people across the worlds of technology, media, gaming, and entertainment.">
+<meta name="twitter:image" content="https://www.davidcglass.me/og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%231a1512%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22Arial,sans-serif%22 font-weight=%22700%22 font-size=%2230%22 fill=%22white%22 text-anchor=%22middle%22%3EDG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: #1a1512;
+    color: #fff;
+    font-family: "Libre Franklin", Helvetica, Arial, sans-serif;
+  }
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+        background: #1a1512;
+    overflow: hidden;
+  }
+  .bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url("hero.jpg") right center / cover no-repeat;
+  }
+  /* Narrow or split-screen windows: keep the photo full height and slide it right */
+  @media (max-aspect-ratio: 4/3) and (min-width: 701px) {
+    .bg {
+      left: auto; width: 150vh;
+      right: calc(26vw - 51vh);
+      background-size: 100% 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%);
+              mask-image: linear-gradient(to right, transparent 0, #000 22%);
+    }
+  }
+  .hero::before {               /* dark overlay like the original */
+    content: "";
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, rgba(10,8,6,.85) 0%, rgba(10,8,6,.55) 45%, rgba(10,8,6,.35) 100%);
+  }
+  .content {
+    position: relative; z-index: 2;
+    padding: 0 6vw;
+    max-width: 1200px;
+  }
+  h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 6.667vw, 6rem);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+  }
+  .roles {
+    margin-top: 2.2rem;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.7;
+    color: rgba(255,255,255,.82);
+    max-width: 34em;
+    text-wrap: balance;
+  }
+  .roles .ln { white-space: nowrap; }
+  /* 1440px+ : scale up smoothly to the full size, reached at 1800px */
+  @media (min-width: 1440px) {
+    h1 { font-size: clamp(6rem, calc(13.333vw - 6rem), 9rem); }
+    .roles { font-size: clamp(1.125rem, calc(1.222vw + 0.4px), 1.4rem); }
+  }
+  .social {
+    margin-top: 2.6rem;
+    display: flex; gap: 1.6rem;
+    list-style: none;
+  }
+  .social a {
+    display: grid; place-items: center;
+    width: 38px; height: 38px;
+    color: #fff; opacity: .85;
+    transition: opacity .2s, transform .2s;
+  }
+  .social a:hover { opacity: 1; transform: translateY(-2px); }
+  .social svg { width: 26px; height: 26px; fill: currentColor; }
+
+  /* Menu */
+  .menu-btn {
+    position: fixed; top: 22px; right: 26px; z-index: 10;
+    width: 40px; height: 30px; background: none; border: 0; cursor: pointer;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .menu-btn span { display: block; height: 4px; background: #fff; border-radius: 1px; transition: .3s; }
+  .menu-open .menu-btn span:nth-child(1) { transform: translateY(13px) rotate(45deg); }
+  .menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+  .menu-open .menu-btn span:nth-child(3) { transform: translateY(-13px) rotate(-45deg); }
+  nav {
+    position: fixed; inset: 0; z-index: 5;
+    background: rgba(10,8,6,.96);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .3s;
+  }
+  .menu-open nav { opacity: 1; pointer-events: auto; }
+  nav ul { list-style: none; text-align: center; }
+  nav a {
+    font-family: "Poppins", sans-serif; font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff; text-decoration: none; line-height: 1.6;
+  }
+  nav a:hover { color: #c9b8e8; }
+
+  @media (min-width: 701px) {
+    .content { padding-left: 200px; padding-top: 150px; }
+  }
+  /* Wide screens: shift this photo right so it clears the text */
+  @media (min-width: 701px) and (min-aspect-ratio: 4/3) {
+    .hero { background: #3e3e40; }
+    .bg {
+      left: 30vw;
+      background-position: 57% center;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 25%);
+              mask-image: linear-gradient(to right, transparent 0, #000 25%);
+    }
+  }
+  @media (max-width: 700px) {
+    .roles br { display: none; }
+    .roles .ln { white-space: normal; }
+    html, body { height: 100%; overflow: hidden; }
+    .hero { height: 100vh; height: 100dvh; min-height: 0; align-items: center; }
+    h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+    .roles { margin-top: 1.2rem; font-size: .95rem; line-height: 1.6; }
+    .social { margin-top: 1.4rem; gap: 1rem; }
+    .bg { background-size: cover; background-position: 64% center; }
+    .content { padding-top: 14vh; }
+    .menu-btn { top: 18px; right: 18px; width: 28px; height: 20px; }
+    .menu-btn span { height: 3px; }
+    .menu-open .menu-btn span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+    .menu-open .menu-btn span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+    .hero::before { background: rgba(10,8,6,.6); }
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-btn" aria-label="Menu" onclick="document.body.classList.toggle('menu-open')">
+  <span></span><span></span><span></span>
+</button>
+
+<nav onclick="document.body.classList.remove('menu-open')">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="https://www.linkedin.com/in/davidcglass/">About</a></li>
+    <li><a href="mailto:hello@davidcglass.me">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="bg"></div>
+  <div class="content">
+    <h1>Hello,<br>I'm David</h1>
+    <p class="roles">An entrepreneur by nature and a creator at heart. I build businesses, create experiences, and connect people across the worlds of technology, media, gaming, and entertainment.</p>
+
+    <ul class="social">
+      <li><a href="https://www.linkedin.com/in/davidcglass/" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></li>
+      <li><a href="https://x.com/davidcglass" aria-label="X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.17h1.7L7.4 4.73H5.58z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/davidcglass/" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.58 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s0-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33 0 7.05.07 2.7.27.27 2.69.07 7.05 0 8.33 0 8.74 0 12s0 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s0-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67 0 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a></li>
+      <li><a href="https://www.levelge.com/u/david" aria-label="Levelge" target="_blank" rel="noopener">
+        <svg viewBox="0 0 64 64"><polygon points="21.984,34.496 0,34.496 0,54.527 42.016,54.527 42.016,29.504 64,29.504 64,9.473 21.984,9.473"/></svg></a></li>
+      <li><a href="mailto:hello@davidcglass.me" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 8.2L3.5 6.5v.04V18h17V6.54L12 12.2zM4.6 6l7.4 4.93L19.4 6z"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

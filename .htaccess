@@ -16,6 +16,31 @@ ErrorDocument 404 /404.html
   Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
 </IfModule>
 
+# Security headers
+<IfModule mod_headers.c>
+  # Don't let other sites show this site inside a frame
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Content-Security-Policy "frame-ancestors 'self'"
+  # Browsers must not guess file types
+  Header always set X-Content-Type-Options "nosniff"
+  # Share only the domain (not full URLs) when visitors click outbound links
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # The site never needs camera, mic, location, etc.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+</IfModule>
+
+# Browser caching: images for 1 year (file names get a new ?v= when a photo changes),
+# pages always checked fresh so updates show immediately
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/plain "access plus 1 day"
+  ExpiresByType application/xml "access plus 1 day"
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php74” package as the default “PHP” programming language.
 <IfModule mime_module>

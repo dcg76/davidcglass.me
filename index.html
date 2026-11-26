@@ -42,7 +42,7 @@
   }
   .bg {
     position: absolute; inset: 0; z-index: 0;
-    background: url("hero.jpg") right center / cover no-repeat;
+    background: url("hero.jpg?v=1") right center / cover no-repeat;
   }
   .hero::before {               /* dark overlay like the original */
     content: "";
@@ -106,7 +106,9 @@
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity .3s;
   }
-  .menu-open nav { opacity: 1; pointer-events: auto; }
+  nav { visibility: hidden; transition: opacity .3s, visibility 0s .3s; }
+  .menu-open nav { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity .3s, visibility 0s; }
+  .menu-btn:focus-visible, nav a:focus-visible, .social a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
   nav ul { list-style: none; text-align: center; }
   nav a {
     font-family: "Poppins", sans-serif; font-weight: 700;
@@ -186,11 +188,11 @@
 </head>
 <body>
 
-<button class="menu-btn" aria-label="Menu" onclick="document.body.classList.toggle('menu-open')">
+<button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
   <span></span><span></span><span></span>
 </button>
 
-<nav onclick="document.body.classList.remove('menu-open')">
+<nav id="site-menu" aria-label="Main">
   <ul>
     <li><a href="#">Home</a></li>
     <li><a href="https://www.linkedin.com/in/davidcglass/">About</a></li>
@@ -220,5 +222,23 @@
   </div>
 </section>
 
+<script>
+(function () {
+  var btn = document.querySelector('.menu-btn');
+  var nav = document.getElementById('site-menu');
+  function setOpen(open, returnFocus) {
+    document.body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) nav.querySelector('a').focus();
+    else if (returnFocus) btn.focus();
+  }
+  btn.addEventListener('click', function () { setOpen(!document.body.classList.contains('menu-open')); });
+  nav.addEventListener('click', function () { setOpen(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setOpen(false, true);
+  });
+})();
+</script>
 </body>
 </html>

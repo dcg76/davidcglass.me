@@ -44,16 +44,6 @@
     position: absolute; inset: 0; z-index: 0;
     background: url("hero.jpg") right center / cover no-repeat;
   }
-  /* Narrow or split-screen windows: keep the photo full height and slide it right */
-  @media (max-aspect-ratio: 4/3) and (min-width: 701px) {
-    .bg {
-      left: auto; width: 150vh;
-      right: calc(26vw - 51vh);
-      background-size: 100% 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%);
-              mask-image: linear-gradient(to right, transparent 0, #000 22%);
-    }
-  }
   .hero::before {               /* dark overlay like the original */
     content: "";
     position: absolute; inset: 0; z-index: 1;
@@ -126,20 +116,26 @@
   nav a { text-transform: uppercase; letter-spacing: .04em; }
   nav a:hover { color: #c9b8e8; }
 
-  @media (min-width: 701px) {
-    .content { padding-left: 200px; padding-top: 150px; }
-  }
-  /* Wide screens: shift this photo right so it clears the text */
-  @media (min-width: 701px) and (min-aspect-ratio: 4/3) {
+  /* Landscape screens (laptops, monitors, tablets sideways):
+     photo kept at its true 16:9 shape, placed so David sits to the right of the text */
+  @media (min-width: 701px) and (orientation: landscape) {
     .hero { background: #3e3e40; }
     .bg {
-      left: 30vw;
-      background-position: 57% center;
+      left: calc(73.5vw - 106.67vh); right: auto;
+      width: 177.78vh;
+      background-size: 100% 100%;
       -webkit-mask-image: linear-gradient(to right, transparent 0, #000 25%);
               mask-image: linear-gradient(to right, transparent 0, #000 25%);
     }
+    .content { padding-left: 8vw; padding-top: 150px; }
+    .roles { max-width: 27em; }
   }
-  @media (max-width: 700px) {
+  @media (min-width: 1280px) and (orientation: landscape) {
+    .content { padding-left: 200px; }
+    .roles { max-width: 34em; }
+  }
+  /* Phones and portrait tablets: full photo, face at top, text below */
+  @media (max-width: 700px), (orientation: portrait) {
     .roles br { display: none; }
     .roles .ln { white-space: normal; }
     html, body { height: 100%; overflow: hidden; }
@@ -147,13 +143,18 @@
     h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
     .roles { margin-top: 1.2rem; font-size: .95rem; line-height: 1.6; }
     .social { margin-top: 1.4rem; gap: 1rem; }
-    .bg { background-size: cover; background-position: 64% center; }
+    .bg { background-size: auto 100%; background-position: calc(50vw - 106.3vh) center; }
     .content { padding-top: 14vh; }
     .menu-btn { top: 18px; right: 18px; width: 28px; height: 20px; }
     .menu-btn span { height: 3px; }
     .menu-open .menu-btn span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
     .menu-open .menu-btn span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
     .hero::before { background: rgba(10,8,6,.6); }
+  }
+  @media (min-width: 701px) and (orientation: portrait) {
+    h1 { font-size: 4.5rem; }
+    .roles { font-size: 1.15rem; max-width: 30em; }
+    .content { padding-left: 8vw; padding-right: 8vw; }
   }
 </style>
 </head>

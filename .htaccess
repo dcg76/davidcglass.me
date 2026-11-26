@@ -1,3 +1,6 @@
+# Custom "page not found" page
+ErrorDocument 404 /404.html
+
 # Force HTTPS and www: every request goes to https://www.davidcglass.me
 <IfModule mod_rewrite.c>
   RewriteEngine On

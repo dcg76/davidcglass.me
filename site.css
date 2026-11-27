@@ -154,7 +154,7 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 /* Full-width photo banner with text overlaid */
 .page-hero {
   position: relative; display: flex; align-items: flex-end;
-  min-height: min(66vh, 630px);
+  min-height: min(74vh, 705px);
   padding: 140px 0 clamp(48px, 7vw, 96px);
   background: #111 var(--hero) center 40% / cover no-repeat;
 }

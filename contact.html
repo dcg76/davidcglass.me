@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=17">
+<link rel="stylesheet" href="/site.css?v=21">
 </head>
 <body>
 <div class="topbar"></div>
@@ -78,7 +78,10 @@
         <!-- Hidden from people; bots that fill it in are ignored -->
         <input type="hidden" name="elapsed" value="">
         <label class="hp" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-        <button class="btn" type="submit">Send message</button>
+        <div class="form-actions">
+          <button class="btn" type="submit">Send message</button>
+          <button class="link-reset" type="reset">Clear form</button>
+        </div>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -134,6 +137,9 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbycHXRW1EsZuPBwJ8BN
     }
   });
 
+  form.addEventListener('reset', function () {
+    hint.innerHTML = ''; status.textContent = ''; status.className = 'form-status';
+  });
   function done(msg, ok) {
     status.textContent = msg; status.className = 'form-status ' + (ok ? 'ok' : 'err');
     btn.disabled = false; btn.textContent = 'Send message';

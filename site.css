@@ -171,3 +171,4 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .page-hero + section { border-top: 0; }
 .email-hint { text-transform: none; letter-spacing: 0; font: 400 .9rem "Libre Franklin", sans-serif; color: #ffd666; min-height: 0; }
 .hint-fix { background: none; border: 0; padding: 0; color: #ffd666; font: inherit; text-decoration: underline; cursor: pointer; }
+.contact-form ::placeholder { color: rgba(255,255,255,.35); opacity: 1; }

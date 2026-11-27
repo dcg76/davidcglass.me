@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=13">
+<link rel="stylesheet" href="/site.css?v=14">
 </head>
 <body>
 <div class="topbar"></div>
@@ -58,10 +58,10 @@
 
       <form class="card contact-form" id="contact-form" novalidate>
         <div class="field-row">
-          <label>Name<input name="name" type="text" autocomplete="name" required maxlength="120"></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200" pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Please enter a full email address, like name@company.com"><span class="email-hint" aria-live="polite"></span></label>
+          <label>Name<input name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Jane Smith"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200" placeholder="jane@company.com" pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Please enter a full email address, like name@company.com"><span class="email-hint" aria-live="polite"></span></label>
         </div>
-        <label>Company <span class="opt">(optional)</span><input name="company" type="text" autocomplete="organization" maxlength="160"></label>
+        <label>Company <span class="opt">(optional)</span><input name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Company or organization"></label>
         <label>What&rsquo;s this about?
           <select name="topic">
             <option>General</option>
@@ -72,7 +72,7 @@
             <option>Media or press</option>
           </select>
         </label>
-        <label>Message<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+        <label>Message<textarea name="message" rows="6" required maxlength="5000" placeholder="Tell me a bit about your project, event, or idea&hellip;"></textarea></label>
         <!-- Hidden from people; bots that fill it in are ignored -->
         <label class="hp" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
         <button class="btn" type="submit">Send message</button>

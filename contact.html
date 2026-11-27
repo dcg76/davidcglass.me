@@ -76,6 +76,7 @@
         </label>
         <label>Message<textarea name="message" rows="6" required maxlength="5000" placeholder="Tell me a bit about your project, event, or idea&hellip;"></textarea></label>
         <!-- Hidden from people; bots that fill it in are ignored -->
+        <input type="hidden" name="elapsed" value="">
         <label class="hp" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
         <button class="btn" type="submit">Send message</button>
         <p class="form-status" role="status" aria-live="polite"></p>
@@ -110,6 +111,7 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbycHXRW1EsZuPBwJ8BN
   var btn = form.querySelector('button[type=submit]');
   var emailInput = form.querySelector('input[name=email]');
   var hint = form.querySelector('.email-hint');
+  var loadedAt = Date.now();
 
   // Catch common typos in email domains (gmial.com -> gmail.com)
   var COMMON = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','live.com','me.com','msn.com','comcast.net','protonmail.com'];
@@ -141,11 +143,14 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbycHXRW1EsZuPBwJ8BN
     status.className = 'form-status';
     if (!form.checkValidity()) { done('Please add your name, a valid email, and a message.', false); form.reportValidity(); return; }
     if (!FORM_ENDPOINT) { done('Preview only: the form isn\'t connected yet.', false); return; }
+    form.elements.elapsed.value = Date.now() - loadedAt;
     btn.disabled = true; btn.textContent = 'Sending…';
     fetch(FORM_ENDPOINT, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (res && res.ok) { form.reset(); hint.innerHTML = ''; done('Thanks! Your message is on its way. I\'ll be in touch soon.', true); }
+        else if (res && res.error === 'links') { done('Please include no more than two links in your message.', false); }
+        else if (res && res.error === 'limit') { done('You\'ve sent a few messages already. Please try again later, or book a meeting instead.', false); }
         else if (res && res.error === 'email') { done('That email address doesn\'t look like it can receive mail. Please double-check it.', false); emailInput.focus(); }
         else { done('Please check your name, email, and message and try again.', false); }
       })

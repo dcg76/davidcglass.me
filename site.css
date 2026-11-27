@@ -110,3 +110,32 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .form-status { min-height: 1.5em; font-size: .95rem; }
 .form-status.ok { color: #9be39b; }
 .form-status.err { color: #ffb4a6; }
+
+/* About: photo strip */
+.photo-strip { display: grid; gap: clamp(12px, 2vw, 24px); grid-template-columns: repeat(2, 1fr); margin-top: 2.4rem; }
+@media (min-width: 900px) { .photo-strip { grid-template-columns: repeat(4, 1fr); } }
+.photo-strip figure { margin: 0; }
+.photo-strip img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; background: #2a2a2c; }
+.photo-strip figcaption { margin-top: .6rem; font-size: .85rem; color: var(--faint); }
+
+/* Gallery */
+.filters { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem; }
+.filters button { font: 700 .8rem "Poppins", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); background: transparent; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: .55rem 1.1rem; cursor: pointer; }
+.filters button.active, .filters button:hover { color: #1a1a1b; background: #fff; border-color: #fff; }
+.masonry { columns: 3 300px; column-gap: clamp(12px, 1.6vw, 20px); }
+.g-item { margin: 0 0 clamp(12px, 1.6vw, 20px); break-inside: avoid; }
+.g-item[hidden] { display: none; }
+.g-item a { display: block; border-radius: 4px; overflow: hidden; }
+.g-item img { width: 100%; height: auto; transition: transform .4s, opacity .3s; }
+.g-item a:hover img { transform: scale(1.03); }
+.lightbox { position: fixed; inset: 0; z-index: 20; background: rgba(8,8,9,.96); display: flex; align-items: center; justify-content: center; }
+.lightbox[hidden] { display: none; }
+.lightbox figure { margin: 0; max-width: 92vw; text-align: center; }
+.lightbox img { max-width: 92vw; max-height: 82vh; margin: 0 auto; border-radius: 2px; }
+.lightbox figcaption { margin-top: 1rem; color: var(--muted); font-size: .95rem; }
+.lightbox button { position: absolute; background: none; border: 0; color: #fff; cursor: pointer; font-size: 3rem; line-height: 1; padding: .4rem 1rem; opacity: .8; }
+.lightbox button:hover { opacity: 1; }
+.lb-close { top: 12px; right: 12px; }
+.lb-prev { left: 8px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 8px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 700px) { .lb-prev, .lb-next { top: auto; bottom: 16px; transform: none; } }

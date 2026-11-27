@@ -1,23 +1,9 @@
-<<<<<<< HEAD
-/**
- * davidcglass.me contact form -> Google Sheet + Gmail notification
- * Setup: Google Sheet > Extensions > Apps Script > paste this file > set NOTIFY_EMAIL >
- * Deploy > New deployment > Web app > Execute as: Me, Who has access: Anyone > copy the /exec URL.
- */
-const NOTIFY_EMAIL = 'you@example.com';   // where new messages are sent
-=======
 const NOTIFY_EMAIL = 'you@example.com';   // ← where you want messages sent
->>>>>>> origin/main
 const SHEET_NAME   = 'Submissions';
 
 function doPost(e) {
   const p = (e && e.parameter) || {};
-<<<<<<< HEAD
-  // Bots fill the hidden "website" field; humans never see it.
-  if (p.website) return json({ ok: true });
-=======
   if (p.website) return json({ ok: true });            // spam bot caught by hidden field
->>>>>>> origin/main
 
   const clean = (v, max) => String(v || '').trim().slice(0, max);
   const name    = clean(p.name, 120);
@@ -26,15 +12,6 @@ function doPost(e) {
   const topic   = clean(p.topic, 80) || 'General';
   const message = clean(p.message, 5000);
 
-<<<<<<< HEAD
-  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || message.length < 5) {
-    return json({ ok: false, error: 'invalid' });
-  }
-
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  if (sheet.getLastRow() === 0) sheet.appendRow(['Received', 'Name', 'Email', 'Company', 'Topic', 'Message']);
-=======
   if (!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(email) || !domainAcceptsMail(email.split('@')[1])) {
     return json({ ok: false, error: 'email' });
   }
@@ -43,7 +20,6 @@ function doPost(e) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
   if (sheet.getLastRow() === 0) sheet.appendRow(['Received','Name','Email','Company','Topic','Message']);
->>>>>>> origin/main
   sheet.appendRow([new Date(), name, email, company, topic, message]);
 
   MailApp.sendEmail({
@@ -56,10 +32,6 @@ function doPost(e) {
   return json({ ok: true });
 }
 
-<<<<<<< HEAD
-function json(obj) {
-  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
-=======
 // True if the email's domain is set up to receive mail (has MX or A records).
 function domainAcceptsMail(domain) {
   try {
@@ -78,5 +50,4 @@ function domainAcceptsMail(domain) {
 function json(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
->>>>>>> origin/main
 }

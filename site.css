@@ -165,5 +165,5 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .page-hero .wrap { position: relative; width: 100%; }
 .page-hero .eyebrow { color: rgba(255,255,255,.7); }
 .page-hero .lead { color: rgba(255,255,255,.88); }
-@media (max-width: 700px) { .page-hero { min-height: 88vh; min-height: 88svh; } }
+@media (max-width: 700px) { .page-hero { min-height: 62vh; min-height: 62svh; padding-top: 110px; background-position: 60% center; } }
 .page-hero + section { border-top: 0; }

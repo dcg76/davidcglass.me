@@ -2,13 +2,13 @@
 :root {
   --bg: #1a1a1b; --bg-2: #232325; --line: rgba(255,255,255,.1);
   --text: #fff; --muted: rgba(255,255,255,.72); --faint: rgba(255,255,255,.5);
-  --pad: clamp(24px, 8vw, 200px);
+  --pad: clamp(24px, 6vw, 64px); --maxw: 1200px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--text); font-family: "Libre Franklin", Helvetica, Arial, sans-serif; font-weight: 300; line-height: 1.7; }
 a { color: inherit; }
 img { display: block; max-width: 100%; }
-.wrap { padding-left: var(--pad); padding-right: var(--pad); max-width: 1600px; }
+.wrap { padding-left: var(--pad); padding-right: var(--pad); max-width: calc(var(--maxw) + 2 * var(--pad)); margin-left: auto; margin-right: auto; }
 .eyebrow { font-family: "Poppins", sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; color: var(--faint); }
 h1, h2, h3 { font-family: "Poppins", sans-serif; font-weight: 700; letter-spacing: -.02em; line-height: 1.08; }
 h1 { font-size: clamp(2.6rem, 6vw, 5.5rem); margin-top: .8rem; }
@@ -69,7 +69,7 @@ footer small { color: var(--faint); font-size: .85rem; }
 .social svg { width: 22px; height: 22px; fill: currentColor; }
 
 /* Logo link + menu (same behavior as homepage) */
-.home-link { position: fixed; top: 22px; left: var(--pad); z-index: 10; font-family: "Poppins", sans-serif; font-weight: 700; font-size: 1.05rem; text-decoration: none; letter-spacing: -.01em; }
+.home-link { position: fixed; top: 22px; left: calc(max(0px, (100vw - var(--maxw)) / 2 - var(--pad)) + var(--pad)); z-index: 10; font-family: "Poppins", sans-serif; font-weight: 700; font-size: 1.05rem; text-decoration: none; letter-spacing: -.01em; }
 .menu-btn { position: fixed; top: 22px; right: 26px; z-index: 10; width: 40px; height: 30px; background: none; border: 0; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
 .menu-btn span { display: block; height: 4px; background: #fff; border-radius: 1px; transition: .3s; }
 .menu-open .menu-btn span:nth-child(1) { transform: translateY(13px) rotate(45deg); }

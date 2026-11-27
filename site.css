@@ -184,4 +184,4 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .contact-form .form-actions { align-items: center; gap: 1.4rem; }
 .link-reset { background: none; border: 0; padding: 0; cursor: pointer; font: 400 .95rem "Libre Franklin", sans-serif; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .link-reset:hover { color: #fff; }
-@media (max-width: 700px) { footer .wrap { flex-direction: column-reverse; align-items: flex-start; } }
+@media (max-width: 700px) { footer .wrap { flex-direction: column-reverse; align-items: center; text-align: center; } }

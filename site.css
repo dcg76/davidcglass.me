@@ -150,3 +150,19 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .timeline.compact > li:first-child { padding-top: 0; }
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
 .chips li { font-size: .88rem; color: var(--muted); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: .35rem .85rem; }
+
+/* Full-width photo banner with text overlaid */
+.page-hero {
+  position: relative; display: flex; align-items: flex-end;
+  min-height: min(82vh, 780px);
+  padding: 140px 0 clamp(48px, 7vw, 96px);
+  background: #111 var(--hero) center 40% / cover no-repeat;
+}
+.page-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--bg) 0%, rgba(26,26,27,.82) 30%, rgba(12,12,14,.55) 65%, rgba(12,12,14,.45) 100%);
+}
+.page-hero .wrap { position: relative; width: 100%; }
+.page-hero .eyebrow { color: rgba(255,255,255,.7); }
+.page-hero .lead { color: rgba(255,255,255,.88); }
+@media (max-width: 700px) { .page-hero { min-height: 88vh; min-height: 88svh; } }

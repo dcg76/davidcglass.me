@@ -14,3 +14,5 @@
     if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setOpen(false, true);
   });
 })();
+// Keep the footer copyright year current
+document.querySelectorAll('.year').forEach(function (el) { el.textContent = new Date().getFullYear(); });

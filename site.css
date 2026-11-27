@@ -185,3 +185,10 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .link-reset { background: none; border: 0; padding: 0; cursor: pointer; font: 400 .95rem "Libre Franklin", sans-serif; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .link-reset:hover { color: #fff; }
 @media (max-width: 700px) { footer .wrap { flex-direction: column-reverse; align-items: center; text-align: center; } }
+
+/* What I do cards */
+.what-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 20px; }
+.what-cards .card { border-radius: 12px; border-color: transparent; }
+.what-cards .card-icon { width: 34px; height: 34px; color: #fff; display: block; }
+.what-cards .card h3 { margin-top: 1.1rem; }
+.what-cards .card p { margin-top: .7rem; }

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=10">
+<link rel="stylesheet" href="/site.css?v=11">
 </head>
 <body>
 <div class="topbar"></div>
@@ -59,7 +59,7 @@
       <form class="card contact-form" id="contact-form" novalidate>
         <div class="field-row">
           <label>Name<input name="name" type="text" autocomplete="name" required maxlength="120"></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200" pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Please enter a full email address, like name@company.com"><span class="email-hint" aria-live="polite"></span></label>
         </div>
         <label>Company <span class="opt">(optional)</span><input name="company" type="text" autocomplete="organization" maxlength="160"></label>
         <label>What&rsquo;s this about?
@@ -106,23 +106,51 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbycHXRW1EsZuPBwJ8BN
   var form = document.getElementById('contact-form');
   var status = form.querySelector('.form-status');
   var btn = form.querySelector('button[type=submit]');
+  var emailInput = form.querySelector('input[name=email]');
+  var hint = form.querySelector('.email-hint');
+
+  // Catch common typos in email domains (gmial.com -> gmail.com)
+  var COMMON = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','live.com','me.com','msn.com','comcast.net','protonmail.com'];
+  var TYPOS = { 'gmial.com':'gmail.com','gmai.com':'gmail.com','gmal.com':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com','gmail.co':'gmail.com','gmail.con':'gmail.com','gmail.cm':'gmail.com',
+    'yaho.com':'yahoo.com','yahooo.com':'yahoo.com','yahoo.co':'yahoo.com','yahoo.con':'yahoo.com','hotmial.com':'hotmail.com','hotmal.com':'hotmail.com','hotmail.co':'hotmail.com',
+    'outlok.com':'outlook.com','outloo.com':'outlook.com','outlook.co':'outlook.com','iclod.com':'icloud.com','icloud.co':'icloud.com','icoud.com':'icloud.com' };
+  function suggestion(v) {
+    var m = /^([^@\s]+)@([^@\s]+)$/.exec(v.trim().toLowerCase());
+    if (!m || COMMON.indexOf(m[2]) > -1) return '';
+    var fix = TYPOS[m[2]] || (/\.(con|cmo|ocm|vom|comm)$/.test(m[2]) ? m[2].replace(/\.[a-z]+$/, '.com') : '');
+    return fix ? m[1] + '@' + fix : '';
+  }
+  emailInput.addEventListener('blur', function () {
+    var s = suggestion(emailInput.value);
+    hint.innerHTML = '';
+    if (s) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'hint-fix'; b.textContent = s;
+      b.addEventListener('click', function () { emailInput.value = s; hint.innerHTML = ''; emailInput.focus(); });
+      hint.appendChild(document.createTextNode('Did you mean ')); hint.appendChild(b); hint.appendChild(document.createTextNode('?'));
+    }
+  });
+
+  function done(msg, ok) {
+    status.textContent = msg; status.className = 'form-status ' + (ok ? 'ok' : 'err');
+    btn.disabled = false; btn.textContent = 'Send message';
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     status.className = 'form-status';
-    if (!form.checkValidity()) { status.textContent = 'Please add your name, a valid email, and a message.'; status.classList.add('err'); form.reportValidity(); return; }
-    if (!FORM_ENDPOINT) { status.textContent = 'Preview only: the form isn\'t connected yet.'; status.classList.add('err'); return; }
-    btn.disabled = true; btn.textContent = 'Sending\u2026';
-    fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
-      .then(function () {
-        form.reset();
-        status.textContent = 'Thanks! Your message is on its way. I\'ll be in touch soon.';
-        status.classList.add('ok');
+    if (!form.checkValidity()) { done('Please add your name, a valid email, and a message.', false); form.reportValidity(); return; }
+    if (!FORM_ENDPOINT) { done('Preview only: the form isn\'t connected yet.', false); return; }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(FORM_ENDPOINT, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.ok) { form.reset(); hint.innerHTML = ''; done('Thanks! Your message is on its way. I\'ll be in touch soon.', true); }
+        else if (res && res.error === 'email') { done('That email address doesn\'t look like it can receive mail. Please double-check it.', false); emailInput.focus(); }
+        else { done('Please check your name, email, and message and try again.', false); }
       })
       .catch(function () {
-        status.textContent = 'Something went wrong. Please try again, or book a meeting instead.';
-        status.classList.add('err');
-      })
-      .then(function () { btn.disabled = false; btn.textContent = 'Send message'; });
+        // The message was sent; the browser just couldn't read Google's reply.
+        form.reset(); hint.innerHTML = ''; done('Thanks! Your message is on its way. I\'ll be in touch soon.', true);
+      });
   });
 })();
 </script>

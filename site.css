@@ -166,3 +166,4 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .page-hero .eyebrow { color: rgba(255,255,255,.7); }
 .page-hero .lead { color: rgba(255,255,255,.88); }
 @media (max-width: 700px) { .page-hero { min-height: 88vh; min-height: 88svh; } }
+.page-hero + section { border-top: 0; }

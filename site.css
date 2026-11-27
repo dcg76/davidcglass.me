@@ -165,5 +165,16 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .page-hero .wrap { position: relative; width: 100%; }
 .page-hero .eyebrow { color: rgba(255,255,255,.7); }
 .page-hero .lead { color: rgba(255,255,255,.88); }
+<<<<<<< HEAD
 @media (max-width: 700px) { .page-hero { min-height: 62vh; min-height: 62svh; padding-top: 110px; background-position: 60% center; } }
 .page-hero + section { border-top: 0; }
+=======
+/* Phones and tablets: banner only as tall as its text */
+@media (max-width: 1199px) { .page-hero { min-height: 430px; padding-top: 130px; padding-bottom: 48px; } }
+@media (max-width: 700px) { .page-hero { min-height: 392px; padding-top: 96px; padding-bottom: 36px; background-position: 60% center; } }
+.page-hero + section { border-top: 0; }
+.email-hint { text-transform: none; letter-spacing: 0; font: 400 .9rem "Libre Franklin", sans-serif; color: #ffd666; min-height: 0; }
+.hint-fix { background: none; border: 0; padding: 0; color: #ffd666; font: inherit; text-decoration: underline; cursor: pointer; }
+.contact-form ::placeholder { color: rgba(255,255,255,.35); opacity: 1; }
+.email-hint:empty { display: none; }
+>>>>>>> origin/main

@@ -242,12 +242,6 @@
   });
 })();
 </script>
-<script>
-// Build the email link in the browser so the address never appears in the page source
-document.querySelectorAll('.js-mail').forEach(function (a) {
-  a.href = 'mai' + 'lto:' + a.getAttribute('data-u') + '\u0040' + a.getAttribute('data-d');
-});
-</script>
 <script src="/book.js?v=1"></script>
 </body>
 </html>

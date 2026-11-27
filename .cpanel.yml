@@ -3,5 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/davidcglass/public_html/
     # -rt copies files and timestamps only; it never changes public_html's own permissions or group
-    - /bin/rsync -rt --exclude='.git' --exclude='.cpanel.yml' --exclude='README.md' ./ $DEPLOYPATH
-    - /bin/chmod 644 $DEPLOYPATH/404.html $DEPLOYPATH/robots.txt $DEPLOYPATH/sitemap.xml $DEPLOYPATH/.htaccess $DEPLOYPATH/index.html $DEPLOYPATH/hero.jpg $DEPLOYPATH/og-image.jpg
+    - /bin/rsync -rt --exclude='.git' --exclude='.cpanel.yml' --exclude='README.md' --exclude='_tools' ./ $DEPLOYPATH
+    - /bin/find $DEPLOYPATH -maxdepth 1 -type f -exec /bin/chmod 644 {} +

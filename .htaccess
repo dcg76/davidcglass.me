@@ -10,6 +10,9 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} !^www\. [NC]
   RewriteRule ^ https://www.davidcglass.me%{REQUEST_URI} [L,R=301]
 
+  # Old image locations moved into /images (keeps old links and social previews working)
+  RewriteRule ^(hero|og-image|contact-hero|about-hero|about-portrait)\.jpg$ /images/$1.jpg [R=301,L]
+
   # Clean addresses: /contact instead of /contact.html
   # 1) Old .html links redirect to the clean address (and /index.html to /)
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]

@@ -12,12 +12,12 @@ ErrorDocument 404 /404.html
 
   # Spam links left over from the old hacked site (e.g. /?shop=...): tell Google they're gone for good.
   # Pages never use query strings, so any page URL with one is answered "410 Gone",
-  # except normal tracking tags (utm_*, fbclid, gclid, msclkid). Images, CSS and JS
+  # except normal tracking/testing tags (utm_*, gtm_* incl. Google Tag Assistant, _gl, fbclid, gclid, msclkid, ref). Images, CSS and JS
   # (which use ?v= version tags) are left alone.
   RewriteCond %{REQUEST_URI} !^/(assets|images)/
   RewriteCond %{REQUEST_URI} !\.(css|js|jpe?g|png|svg|ico|webp|gif)$ [NC]
   RewriteCond %{QUERY_STRING} .
-  RewriteCond %{QUERY_STRING} !^((utm_[a-z_]+|fbclid|gclid|msclkid)(=[^&]*)?(&|$))+$ [NC]
+  RewriteCond %{QUERY_STRING} !^((utm_[a-z_]+|gtm_[a-z_]+|_gl|fbclid|gclid|gbraid|wbraid|gad_source|msclkid|li_fat_id|ref)(=[^&]*)?(&|$))+$ [NC]
   RewriteRule ^ - [G,L]
 
   # Old image locations moved into /images (keeps old links and social previews working)

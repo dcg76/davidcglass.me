@@ -89,7 +89,7 @@ def build():
     </div>
   </section>'''
     out = shell('contact.html', 'Blog | David C. Glass', 'Thoughts on technology, events, gaming, media and building things.',
-                SITE + '/blog', posts[0]['image'] if posts else '/images/og-image.jpg', body)
+                SITE + '/blog', posts[0]['image'] if posts else '/images/share/og-image.jpg', body)
     open(os.path.join(ROOT, 'blog.html'), 'w', encoding='utf-8').write(out)
 
     # Individual posts

@@ -11,7 +11,11 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://www.davidcglass.me%{REQUEST_URI} [L,R=301]
 
   # Old image locations moved into /images (keeps old links and social previews working)
-  RewriteRule ^(hero|og-image|contact-hero|about-hero|about-portrait)\.jpg$ /images/$1.jpg [R=301,L]
+  RewriteRule ^(images/)?hero\.jpg$ /images/home/hero.jpg [R=301,L]
+  RewriteRule ^(images/)?og-image\.jpg$ /images/share/og-image.jpg [R=301,L]
+  RewriteRule ^(images/)?contact-hero\.jpg$ /images/contact/banner.jpg [R=301,L]
+  RewriteRule ^(images/)?about-hero\.jpg$ /images/about/banner.jpg [R=301,L]
+  RewriteRule ^(images/)?about-portrait\.jpg$ /images/about/portrait.jpg [R=301,L]
 
   # Clean addresses: /contact instead of /contact.html
   # 1) Old .html links redirect to the clean address (and /index.html to /)

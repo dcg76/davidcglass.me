@@ -237,3 +237,17 @@ a:focus-visible, .menu-btn:focus-visible { outline: 2px solid #fff; outline-offs
 .post-nav a { text-decoration: none; font-family: "Poppins", sans-serif; font-weight: 700; line-height: 1.3; }
 .post-nav a span { display: block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin-bottom: .4rem; }
 .post-nav .newer { text-align: right; }
+
+/* Footer legal links */
+.legal a { color: inherit; text-decoration: none; transition: color .2s; }
+.legal a:hover { color: #fff; }
+.legal .sep { margin: 0 .55em; opacity: .6; }
+/* Privacy page */
+.policy .effective { color: var(--faint); font-size: .95rem; }
+.policy h2 { scroll-margin-top: 90px; }
+.policy h3 { font-size: 1.15rem; margin-top: 1.8rem; }
+.policy p + ul, .policy h3 + p { margin-top: .8rem; }
+.policy { font-size: 1.02rem; line-height: 1.75; }
+.policy h2 { font-size: clamp(1.35rem, 2.2vw, 1.7rem); margin-top: 3rem; }
+.policy li::marker { color: var(--faint); }
+.policy code { font-size: .9em; background: rgba(255,255,255,.08); padding: .1em .35em; border-radius: 3px; }

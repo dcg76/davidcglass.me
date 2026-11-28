@@ -11,10 +11,13 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://www.davidcglass.me%{REQUEST_URI} [L,R=301]
 
   # Spam links left over from the old hacked site (e.g. /?shop=...): tell Google they're gone for good.
-  # The site never uses query strings, so any URL with one is answered "410 Gone",
-  # except normal tracking/cache tags (utm_*, fbclid, gclid, msclkid, ref, v).
+  # Pages never use query strings, so any page URL with one is answered "410 Gone",
+  # except normal tracking tags (utm_*, fbclid, gclid, msclkid). Images, CSS and JS
+  # (which use ?v= version tags) are left alone.
+  RewriteCond %{REQUEST_URI} !^/(assets|images)/
+  RewriteCond %{REQUEST_URI} !\.(css|js|jpe?g|png|svg|ico|webp|gif)$ [NC]
   RewriteCond %{QUERY_STRING} .
-  RewriteCond %{QUERY_STRING} !^((utm_[a-z_]+|fbclid|gclid|msclkid|ref|v)(=[^&]*)?(&|$))+$ [NC]
+  RewriteCond %{QUERY_STRING} !^((utm_[a-z_]+|fbclid|gclid|msclkid)(=[^&]*)?(&|$))+$ [NC]
   RewriteRule ^ - [G,L]
 
   # Old image locations moved into /images (keeps old links and social previews working)

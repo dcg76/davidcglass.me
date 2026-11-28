@@ -2,7 +2,7 @@
 title: What 20 Years of Producing Events Taught Me About Community
 date: 2026-11-20
 excerpt: The best conferences aren't about the stage. They're about what happens in the hallways, and how you design for it.
-image: /blog/images/gb-next-2024.jpg
+image: /images/blog/gb-next-2024.jpg
 image_alt: A packed GamesBeat Next session
 ---
 

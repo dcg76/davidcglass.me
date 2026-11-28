@@ -2,7 +2,7 @@
 title: Why Orlando's Tech Scene Is Still Underrated
 date: 2026-11-10
 excerpt: Simulation, gaming, digital media and a growing startup community. A look at what makes Orlando a quiet powerhouse.
-image: /blog/images/orlando-tech-scene.jpg
+image: /images/blog/orlando-tech-scene.jpg
 image_alt: Downtown Orlando skyline
 ---
 

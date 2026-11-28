@@ -7,7 +7,7 @@ Each post is a .md file with a short header:
     title: My Post Title
     date: 2026-11-20
     excerpt: One or two sentences shown on the blog page.
-    image: /blog/images/my-photo.jpg
+    image: /images/blog/my-photo.jpg
     image_alt: Short description of the photo
     ---
 
@@ -89,7 +89,7 @@ def build():
     </div>
   </section>'''
     out = shell('contact.html', 'Blog | David C. Glass', 'Thoughts on technology, events, gaming, media and building things.',
-                SITE + '/blog', posts[0]['image'] if posts else '/og-image.jpg', body)
+                SITE + '/blog', posts[0]['image'] if posts else '/images/og-image.jpg', body)
     open(os.path.join(ROOT, 'blog.html'), 'w', encoding='utf-8').write(out)
 
     # Individual posts
